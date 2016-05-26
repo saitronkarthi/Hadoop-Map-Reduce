@@ -1,0 +1,14 @@
+1.start-all.sh [to start Hadoop]
+2. Login hduser
+3. /usr/local/hadoop/bin/hadoop dfs -copyFromLocal Crime.csv
+4.sudo nano /home/hduser/python/mapper.py
+5.sudo chmod +x mapper.py
+6.sudo nano /home/hduser/python/reducer.py
+7.sudo chmod +x reducer.py
+8.hduser@ip-172-31-31-220:/usr/local/hadoop$ bin/hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.6.0.jar -file /home/hduser/python/mapper.py -mapper /home/hduser/python/mapper.py -file /home/hduser/python/reducer.py -reducer /home/hduser/python/reducer.py -input /user/hduser/Crime.csv -output /user/hduser/output25 (run hadoop & output it to output25 directory)
+9.bin/hadoop fs -cat /user/hduser/output25/part-00000
+10. hduser@ip-172-31-31-220:/usr/local/hadoop$ sudo bin/hadoop fs -copyToLocal /user/hduser/output25/part-00000 /home/ubuntu ( copy from hdfs to local)
+18.ubuntu@ip-172-31-31-220:~$ cat part-00000 > crimeresults.csv (copy output to the csv file to bes used for visualization.
+
+
+
